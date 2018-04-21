@@ -5,10 +5,12 @@
 <%= form_for @user_changeset, user_path(@conn, :create), fn f -> %>
   <label>名前</label>
   <%= text_input f, :name %>
+  <%= error_tag f, :name %>
   <br>
 
   <label>所持金</label>
-  <%= text_input f, :money %>
+  <%= text_input f, :money %>円
+  <%= error_tag f, :money %>
   <br>
 
   <%= submit "作成" %>
