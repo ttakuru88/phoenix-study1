@@ -1,1 +1,15 @@
 <h1>Users</h1>
+
+<h2>作成</h2>
+
+<%= form_for @user_changeset, user_path(@conn, :create), fn f -> %>
+  <label>名前</label>
+  <%= text_input f, :name %>
+  <br>
+
+  <label>所持金</label>
+  <%= text_input f, :money %>
+  <br>
+
+  <%= submit "作成" %>
+<% end %>
