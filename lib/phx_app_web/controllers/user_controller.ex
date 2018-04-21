@@ -4,8 +4,10 @@ defmodule PhxAppWeb.UserController do
   alias PhxApp.{User, Repo}
 
   def index(conn, _params) do
+    users = User |> Repo.all
+
     user_changeset = User.changeset(%User{}, _params)
-    render conn, "index.html", user_changeset: user_changeset
+    render conn, "index.html", user_changeset: user_changeset, users: users
   end
 
   def create(conn, %{"user" => user_params}) do
