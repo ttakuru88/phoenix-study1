@@ -4,10 +4,8 @@ defmodule PhxAppWeb.UserController do
   alias PhxApp.{User, Repo}
 
   def index(conn, _params) do
-    users = User |> Repo.all
-
     user_changeset = User.changeset(%User{}, _params)
-    render conn, "index.html", user_changeset: user_changeset, users: users
+    render conn, "index.html", user_changeset: user_changeset, users: load_users
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -20,7 +18,11 @@ defmodule PhxAppWeb.UserController do
       {:error, user_changeset} ->
         conn
         |> put_flash(:error, "作成失敗")
-        |> render("index.html", user_changeset: user_changeset)
+        |> render("index.html", user_changeset: user_changeset, users: load_users)
     end
+  end
+
+  defp load_users do
+    User |> Repo.all
   end
 end
