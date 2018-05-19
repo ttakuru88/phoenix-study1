@@ -22,6 +22,17 @@ defmodule PhxAppWeb.UserController do
     end
   end
 
+
+  def delete(conn, %{"id" => id}) do
+    User
+    |> Repo.get(id)
+    |> Repo.delete
+
+    conn
+    |> put_flash(:info, "削除しました")
+    |> redirect(to: user_path(conn, :index))
+  end
+
   defp load_users do
     User |> Repo.all
   end
