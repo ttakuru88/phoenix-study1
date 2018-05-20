@@ -28,6 +28,22 @@ defmodule PhxAppWeb.UserController do
     render(conn, "edit.html", changeset: changeset, user: user)
   end
 
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = User |> Repo.get(id)
+    changeset = User.changeset(user, user_params)
+
+    case Repo.update(changeset) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "更新したぜ")
+        |> redirect(to: user_path(conn, :index))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "更新失敗")
+        |> render("edit.html", changeset: changeset, user: user)
+    end
+  end
+
   def delete(conn, %{"id" => id}) do
     User
     |> Repo.get(id)
