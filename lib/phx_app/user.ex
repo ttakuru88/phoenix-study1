@@ -11,7 +11,7 @@ defmodule PhxApp.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(user, attrs \\ %{}) do
     user
     |> cast(attrs, [:name, :money])
     |> validate_required([:name, :money])

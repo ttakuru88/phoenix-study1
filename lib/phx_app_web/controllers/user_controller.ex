@@ -22,6 +22,11 @@ defmodule PhxAppWeb.UserController do
     end
   end
 
+  def edit(conn, %{"id" => id}) do
+    user = User |> Repo.get(id)
+    changeset = User.changeset(user)
+    render(conn, "edit.html", changeset: changeset, user: user)
+  end
 
   def delete(conn, %{"id" => id}) do
     User

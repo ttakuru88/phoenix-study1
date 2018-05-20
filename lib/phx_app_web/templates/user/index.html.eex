@@ -2,7 +2,7 @@
 
 <ul>
 <%= for user <- @users do %>
-  <li><%= user.name %>（<%= user.money %> 円）<%= link "削除", to: user_path(@conn, :delete, user), method: :delete %></li>
+  <li><%= user.name %>（<%= user.money %> 円）<%= link "編集", to: user_path(@conn, :edit, user) %> <%= link "削除", to: user_path(@conn, :delete, user), method: :delete %></li>
 <% end %>
 </ul>
 
