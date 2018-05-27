@@ -1,4 +1,4 @@
-defmodule PhxAppWeb.PageControllerTest do
+defmodule PhxAppWeb.MessageControllerTest do
   use PhxAppWeb.ConnCase
 
   test "GET /", %{conn: conn} do

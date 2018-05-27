@@ -16,7 +16,7 @@ defmodule PhxAppWeb.Router do
   scope "/", PhxAppWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    resources "/", MessageController, only: [:index]
     resources "/users", UserController, only: [:index, :create, :delete, :edit, :update]
   end
 

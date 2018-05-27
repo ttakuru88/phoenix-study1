@@ -1,4 +1,4 @@
-defmodule PhxAppWeb.PageController do
+defmodule PhxAppWeb.MessageController do
   use PhxAppWeb, :controller
 
   def index(conn, _params) do
