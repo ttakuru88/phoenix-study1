@@ -21,3 +21,4 @@
 
   <%= submit "作成" %>
 <% end %>
+<%= render PhxAppWeb.SharedView, "pr.html" %>

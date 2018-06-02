@@ -4,5 +4,6 @@
   <h4>ログ</h4>
   <ul id="messages">
   </ul>
+  <%= render PhxAppWeb.SharedView, "pr.html" %>
 </div>
 </div>
