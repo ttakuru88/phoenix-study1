@@ -2,7 +2,7 @@
 
 <ul>
 <%= for user <- @users do %>
-  <li><%= user.name %>（<%= user.money %> 円）<%= link "編集", to: user_path(@conn, :edit, user) %> <%= link "削除", to: user_path(@conn, :delete, user), method: :delete %></li>
+  <li><%= user.name %>（<%= user.money %> 円）<%= user.hashed_password %> <%= link "編集", to: user_path(@conn, :edit, user) %> <%= link "削除", to: user_path(@conn, :delete, user), method: :delete %></li>
 <% end %>
 </ul>
 
@@ -12,6 +12,11 @@
   <label>名前</label>
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
+  <br>
+
+  <label>パスワード</label>
+  <%= text_input f, :password %>
+  <%= error_tag f, :password %>
   <br>
 
   <label>所持金</label>
