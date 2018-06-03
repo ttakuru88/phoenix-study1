@@ -13,11 +13,17 @@ defmodule PhxApp.User do
   end
 
   @doc false
-  def changeset(user, attrs \\ %{}) do
+  def changeset_on_create(user, attrs \\ %{}) do
     user
     |> cast(attrs, [:name, :money, :password])
-    |> validate_required([:name, :money, :password])
+    |> validate_required([:name, :password])
     |> hash_password()
+  end
+
+  def changeset_on_edit(user, attrs \\ %{}) do
+    user
+    |> cast(attrs, [:name, :money])
+    |> validate_required([:name])
   end
 
   defp hash_password(changeset) do

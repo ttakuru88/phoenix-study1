@@ -4,12 +4,12 @@ defmodule PhxAppWeb.UserController do
   alias PhxApp.{User, Repo}
 
   def index(conn, _params) do
-    user_changeset = User.changeset(%User{}, _params)
+    user_changeset = User.changeset_on_create(%User{}, _params)
     render conn, "index.html", user_changeset: user_changeset, users: load_users
   end
 
   def create(conn, %{"user" => user_params}) do
-    user_changeset = User.changeset(%User{}, user_params)
+    user_changeset = User.changeset_on_create(%User{}, user_params)
     case Repo.insert(user_changeset) do
       {:ok, _} ->
         conn
@@ -24,13 +24,13 @@ defmodule PhxAppWeb.UserController do
 
   def edit(conn, %{"id" => id}) do
     user = User |> Repo.get(id)
-    changeset = User.changeset(user)
+    changeset = User.changeset_on_edit(user)
     render(conn, "edit.html", changeset: changeset, user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = User |> Repo.get(id)
-    changeset = User.changeset(user, user_params)
+    changeset = User.changeset_on_edit(user, user_params)
 
     case Repo.update(changeset) do
       {:ok, _} ->
