@@ -17,3 +17,7 @@ config :phx_app, PhxApp.Repo,
   database: "phx_app_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :argon2_elixir,
+  t_cost: 1,
+  m_cost: 8
