@@ -13,6 +13,11 @@
 
   <body>
     <div class="container">
+      <ul class="nav nav-pills">
+        <li><%= link "chat", to: "/" %></li>
+        <li><%= link "users", to: "/users" %></li>
+      </ul>
+
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
