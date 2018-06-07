@@ -16,6 +16,7 @@
       <ul class="nav nav-pills">
         <li><%= link "chat", to: "/" %></li>
         <li><%= link "users", to: "/users" %></li>
+        <li><%= link "login", to: "/sessions/new" %></li>
       </ul>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

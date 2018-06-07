@@ -18,6 +18,7 @@ defmodule PhxAppWeb.Router do
 
     resources "/", MessageController, only: [:index]
     resources "/users", UserController, only: [:index, :create, :delete, :edit, :update]
+    resources "/sessions", SessionController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.
