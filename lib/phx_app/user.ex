@@ -15,15 +15,19 @@ defmodule PhxApp.User do
   end
 
   def authenticate(name, password) do
-    query = from u in User,
-      where: u.name == ^name,
-      select: struct(u, [:id, :hashed_password])
-    user = Repo.one(query)
-    if user && Comeonin.Argon2.checkpw(password, user.hashed_password) do
-      user
-    else
-      nil
+    user = Repo.get_by(User, name: name)
+    case checkpw(user, password) do
+      true -> {:ok, user}
+      _ -> :error
     end
+  end
+
+  defp checkpw(nil, password) do
+    false
+  end
+
+  defp checkpw(user, password) do
+    Comeonin.Argon2.checkpw(password, user.hashed_password)
   end
 
   @doc false
