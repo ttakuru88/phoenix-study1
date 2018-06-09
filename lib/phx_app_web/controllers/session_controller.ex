@@ -20,4 +20,11 @@ defmodule PhxAppWeb.SessionController do
           |> render "new.html"
     end
   end
+
+  def delete(conn, _) do
+    conn
+      |> delete_session(:user_id)
+      |> put_flash(:info, "ログアウトしたぜ")
+      |> redirect(to: "/sessions/new")
+  end
 end

@@ -40,6 +40,7 @@ defmodule PhxAppWeb do
       import PhxAppWeb.Router.Helpers
       import PhxAppWeb.ErrorHelpers
       import PhxAppWeb.Gettext
+      import PhxApp.User, only: [current_user: 1, signed_in?: 1]
     end
   end
 
