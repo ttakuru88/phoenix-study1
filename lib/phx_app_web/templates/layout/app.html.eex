@@ -14,12 +14,12 @@
   <body>
     <div class="container">
       <ul class="nav nav-pills">
-        <li><%= link "chat", to: "/" %></li>
-        <li><%= link "users", to: "/users" %></li>
+        <li><%= link "chat", to: message_path(@conn, :index) %></li>
+        <li><%= link "users", to: user_path(@conn, :index) %></li>
         <%= if signed_in?(@conn) do %>
-          <li><%= link "logout", to: "/sessions", method: :delete %></li>
+          <li><%= link "logout", to: session_path(@conn, :delete), method: :delete %></li>
         <% else %>
-          <li><%= link "login", to: "/sessions/new" %></li>
+          <li><%= link "login", to: session_path(@conn, :new) %></li>
         <% end %>
       </ul>
 

@@ -5,9 +5,12 @@ defmodule PhxAppWeb.SessionController do
 
   def new(conn, _params) do
     if User.signed_in?(conn) do
-      redirect(conn, to: "/")
+      conn
+        |> put_flash(:info, "ログイン済みだぜ")
+        |> redirect(to: user_path(conn, :index))
     else
-      render conn, "new.html"
+      conn
+        |> render "new.html"
     end
   end
 
@@ -17,7 +20,7 @@ defmodule PhxAppWeb.SessionController do
         conn
           |> put_session(:user_id, user.id)
           |> put_flash(:info, "ログインしたぜ")
-          |> redirect(to: "/")
+          |> redirect(to: user_path(conn, :index))
       :error ->
         conn
           |> put_flash(:error, "ログインできないぜ")
@@ -29,6 +32,6 @@ defmodule PhxAppWeb.SessionController do
     conn
       |> delete_session(:user_id)
       |> put_flash(:info, "ログアウトしたぜ")
-      |> redirect(to: "/sessions/new")
+      |> redirect(to: session_path(conn, :new))
   end
 end
