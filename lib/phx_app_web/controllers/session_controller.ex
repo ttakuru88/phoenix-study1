@@ -4,7 +4,11 @@ defmodule PhxAppWeb.SessionController do
   alias PhxApp.{User}
 
   def new(conn, _params) do
-    render conn, "new.html"
+    if User.signed_in?(conn) do
+      redirect(conn, to: "/")
+    else
+      render conn, "new.html"
+    end
   end
 
   def create(conn, %{"name" => name, "password" => password}) do
@@ -13,7 +17,7 @@ defmodule PhxAppWeb.SessionController do
         conn
           |> put_session(:user_id, user.id)
           |> put_flash(:info, "ログインしたぜ")
-          |> render "new.html"
+          |> redirect(to: "/")
       :error ->
         conn
           |> put_flash(:error, "ログインできないぜ")
