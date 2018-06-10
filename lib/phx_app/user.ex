@@ -1,9 +1,7 @@
 defmodule PhxApp.User do
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query, only: [from: 2]
   alias PhxApp.{User, Repo}
-  require Logger
 
   schema "users" do
     field :money, :integer
@@ -12,33 +10,6 @@ defmodule PhxApp.User do
     field :hashed_password, :string
 
     timestamps()
-  end
-
-  def current_user(conn) do
-    case Plug.Conn.get_session(conn, :user_id) do
-      nil -> nil
-      user_id -> Repo.get(User, user_id)
-    end
-  end
-
-  def signed_in?(conn) do
-    !!current_user(conn)
-  end
-
-  def authenticate(name, password) do
-    user = Repo.get_by(User, name: name)
-    case checkpw(user, password) do
-      true -> {:ok, user}
-      _ -> :error
-    end
-  end
-
-  defp checkpw(nil, password) do
-    false
-  end
-
-  defp checkpw(user, password) do
-    Comeonin.Argon2.checkpw(password, user.hashed_password)
   end
 
   @doc false

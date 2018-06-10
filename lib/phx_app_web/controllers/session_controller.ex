@@ -1,10 +1,10 @@
 defmodule PhxAppWeb.SessionController do
   use PhxAppWeb, :controller
   require Logger
-  alias PhxApp.{User}
+  alias PhxApp.{User, Authentication}
 
   def new(conn, _params) do
-    if User.signed_in?(conn) do
+    if Authentication.signed_in?(conn) do
       conn
         |> put_flash(:info, "ログイン済みだぜ")
         |> redirect(to: user_path(conn, :index))
@@ -15,7 +15,7 @@ defmodule PhxAppWeb.SessionController do
   end
 
   def create(conn, %{"name" => name, "password" => password}) do
-    case User.authenticate(name, password) do
+    case Authentication.authenticate_user(name, password) do
       {:ok, user} ->
         conn
           |> put_session(:user_id, user.id)
