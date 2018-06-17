@@ -9,10 +9,6 @@ defmodule PhxAppWeb.ChatRoomChannel do
     end
   end
 
-  # def handle_in("ping", payload, socket) do
-  #   {:reply, {:ok, payload}, socket}
-  # end
-
   def handle_in("speak", payload, socket) do
     broadcast socket, "speak", payload
     {:noreply, socket}
