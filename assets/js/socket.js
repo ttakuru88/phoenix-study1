@@ -16,8 +16,8 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-const messages = new Vue({
-  el: '#messages',
+const chat = new Vue({
+  el: '#chat',
   data: {
     messages: []
   }
@@ -37,7 +37,7 @@ submitButtonEl.addEventListener('click', () => {
 }, false)
 
 channel.on('speak', payload => {
-  messages.messages.unshift({text: payload.message})
+  chat.messages.unshift({text: payload.message})
 })
 
 export default socket

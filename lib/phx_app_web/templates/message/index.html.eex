@@ -1,14 +1,12 @@
-<div class="row marketing">
+<div id="chat" class="row marketing">
   <input type="text" id="new-message"><button id="send-message">発言</button>
 
   <h4>ログ</h4>
-  <div id="messages">
-    <ul>
-      <li v-for="message in messages">
-        {{ message.text }}
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li v-for="message in messages">
+      {{ message.text }}
+    </li>
+  </ul>
   <%= render PhxAppWeb.SharedView, "pr.html" %>
 </div>
 </div>
