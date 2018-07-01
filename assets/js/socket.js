@@ -19,22 +19,16 @@ channel.join()
 const chat = new Vue({
   el: '#chat',
   data: {
-    messages: []
+    messages: [],
+    newMessage: ''
+  },
+  methods: {
+    sendMessage: () => {
+      channel.push('speak', {message: chat.newMessage})
+      chat.newMessage = ''
+    }
   }
 })
-
-const newMessageEl = document.getElementById('new-message')
-const submitButtonEl = document.getElementById('send-message')
-
-submitButtonEl.addEventListener('click', () => {
-  const message = newMessageEl.value
-  if(message.length <= 0) {
-    return
-  }
-
-  channel.push('speak', {message: message})
-  newMessageEl.value = ''
-}, false)
 
 channel.on('speak', payload => {
   chat.messages.unshift({text: payload.message})

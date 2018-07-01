@@ -1,5 +1,5 @@
 <div id="chat" class="row marketing">
-  <input type="text" id="new-message"><button id="send-message">発言</button>
+  <input type="text" v-model="newMessage"><button v-on:click="sendMessage">発言</button>
 
   <h4>ログ</h4>
   <ul>
