@@ -23,9 +23,9 @@ const chat = new Vue({
     newMessage: ''
   },
   methods: {
-    sendMessage: () => {
-      channel.push('speak', {message: chat.newMessage})
-      chat.newMessage = ''
+    sendMessage: function(){
+      channel.push('speak', {message: this.newMessage})
+      this.newMessage = ''
     }
   }
 })
