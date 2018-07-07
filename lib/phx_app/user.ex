@@ -8,6 +8,7 @@ defmodule PhxApp.User do
     field :name, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
+    has_many :threads, Thread
 
     timestamps()
   end
