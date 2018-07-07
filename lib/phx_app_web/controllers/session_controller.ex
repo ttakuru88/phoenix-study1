@@ -1,7 +1,7 @@
 defmodule PhxAppWeb.SessionController do
   use PhxAppWeb, :controller
   require Logger
-  alias PhxApp.{User, Authentication}
+  alias PhxApp.{Authentication}
 
   def new(conn, _params) do
     if Authentication.signed_in?(conn) do
@@ -10,7 +10,7 @@ defmodule PhxAppWeb.SessionController do
         |> redirect(to: user_path(conn, :index))
     else
       conn
-        |> render "new.html"
+        |> render("new.html")
     end
   end
 
@@ -24,7 +24,7 @@ defmodule PhxAppWeb.SessionController do
       :error ->
         conn
           |> put_flash(:error, "ログインできないぜ")
-          |> render "new.html"
+          |> render("new.html")
     end
   end
 
