@@ -16,6 +16,7 @@
       <ul class="nav nav-pills">
         <li><%= link "chat", to: message_path(@conn, :index) %></li>
         <li><%= link "users", to: user_path(@conn, :index) %></li>
+        <li><%= link "BBS", to: thread_path(@conn, :index) %></li>
         <%= if signed_in?(@conn) do %>
           <li><%= link "logout", to: session_path(@conn, :delete), method: :delete %></li>
         <% else %>
