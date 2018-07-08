@@ -1,7 +1,7 @@
 defmodule PhxApp.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias PhxApp.{User, Repo}
+  alias PhxApp.{User}
 
   schema "users" do
     field :money, :integer

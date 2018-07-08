@@ -1,9 +1,11 @@
 defmodule PhxApp.Thread do
-  use PhxApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
+  alias PhxApp.{User}
 
   schema "threads" do
     field :title, :string
-    field :body, :text
+    field :body, :string
     belongs_to :user, User
     timestamps()
   end
