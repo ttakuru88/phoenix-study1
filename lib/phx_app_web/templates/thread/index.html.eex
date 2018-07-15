@@ -18,9 +18,8 @@
 <% end %>
 
 <h2>スレッド一覧</h2>
-<%= for thread <- @threads do %>
-  <article>
-    <h2><%= thread.title %></h2>
-    <p><%= thread.body %></p>
-  </article>
-<% end %>
+<ul>
+  <%= for thread <- @threads do %>
+    <li><%= link thread.title, to: thread_path(@conn, :show, thread.id) %></li>
+  <% end %>
+</ul>

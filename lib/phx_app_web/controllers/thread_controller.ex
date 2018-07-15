@@ -8,7 +8,8 @@ defmodule PhxAppWeb.ThreadController do
   end
 
   def show(conn, %{"id" => id}) do
-
+    thread = Thread |> Repo.get(id)
+    render conn, "show.html", thread: thread
   end
 
   def create(conn, %{"thread" => params}) do
