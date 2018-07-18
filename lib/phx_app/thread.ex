@@ -1,12 +1,13 @@
 defmodule PhxApp.Thread do
   use Ecto.Schema
   import Ecto.Changeset
-  alias PhxApp.{User}
+  alias PhxApp.{User, ThreadReply}
 
   schema "threads" do
     field :title, :string
     field :body, :string
     belongs_to :user, User
+    has_many :replies, {"thread_replies", ThreadReply}
     timestamps()
   end
 
