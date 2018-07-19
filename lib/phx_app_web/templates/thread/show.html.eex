@@ -2,8 +2,11 @@
 
 <%= text_to_html(@thread.body) %>
 
+<p>by <%= @thread.user.name %></p>
+
 <h2>replies</h2>
 
-<%= for reply <- @replies do %>
+<%= for reply <- @thread.replies do %>
   <%= text_to_html(reply.body) %>
+  <p>by <%= reply.user.name %></p>
 <% end %>
