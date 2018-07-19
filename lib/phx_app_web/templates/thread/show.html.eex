@@ -10,3 +10,12 @@
   <%= text_to_html(reply.body) %>
   <p>by <%= reply.user.name %></p>
 <% end %>
+
+<%= if signed_in?(@conn) do %>
+  <h2>reply</h2>
+  <%= form_for @changeset, thread_reply_path(@conn, :create, @thread.id), fn f -> %>
+    <%= text_input f, :body %>
+    <br>
+    <%= submit "送信" %>
+  <% end %>
+<% end %>

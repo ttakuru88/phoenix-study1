@@ -20,7 +20,9 @@ defmodule PhxAppWeb.Router do
     resources "/users", UserController, only: [:index, :create, :delete, :edit, :update]
     resources "/sessions", SessionController, only: [:new, :create]
     delete "/sessions", SessionController, :delete
-    resources "/threads", ThreadController, only: [:index, :show, :create]
+    resources "/threads", ThreadController, only: [:index, :show, :create] do
+      resources "/replies", ThreadReplyController, only: [:create], as: :reply
+    end
   end
 
   # Other scopes may use custom stacks.

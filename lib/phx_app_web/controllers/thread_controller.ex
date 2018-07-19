@@ -1,7 +1,7 @@
 defmodule PhxAppWeb.ThreadController do
   use PhxAppWeb, :controller
 
-  alias PhxApp.{Thread, Repo, Authentication}
+  alias PhxApp.{Thread, Repo, Authentication, ThreadReply}
 
   def index(conn, _params) do
     render conn, "index.html", threads: load_threads(), changeset: Thread.changeset(%Thread{})
@@ -9,7 +9,8 @@ defmodule PhxAppWeb.ThreadController do
 
   def show(conn, %{"id" => id}) do
     thread = Thread |> Repo.get(id) |> Repo.preload([:replies, :user])
-    render conn, "show.html", thread: thread
+    changeset = ThreadReply.changeset(%ThreadReply{})
+    render conn, "show.html", thread: thread, changeset: changeset
   end
 
   def create(conn, %{"thread" => params}) do
