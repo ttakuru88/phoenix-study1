@@ -8,7 +8,7 @@ defmodule PhxAppWeb.ThreadController do
   end
 
   def show(conn, %{"id" => id}) do
-    thread = Thread |> Repo.get(id) |> Repo.preload([:replies, :user])
+    thread = Thread |> Repo.get(id) |> Repo.preload([replies: [:user], user: []])
     changeset = ThreadReply.changeset(%ThreadReply{})
     render conn, "show.html", thread: thread, changeset: changeset
   end
