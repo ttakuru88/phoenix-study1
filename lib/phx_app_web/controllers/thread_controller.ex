@@ -9,7 +9,8 @@ defmodule PhxAppWeb.ThreadController do
 
   def show(conn, %{"id" => id}) do
     thread = Thread |> Repo.get(id)
-    render conn, "show.html", thread: thread
+    replies = thread |> Ecto.assoc(:replies) |> Repo.all
+    render conn, "show.html", thread: thread, replies: replies
   end
 
   def create(conn, %{"thread" => params}) do

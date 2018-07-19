@@ -1,3 +1,9 @@
 <h2><%= @thread.title %></h2>
 
 <%= text_to_html(@thread.body) %>
+
+<h2>replies</h2>
+
+<%= for reply <- @replies do %>
+  <%= text_to_html(reply.body) %>
+<% end %>
