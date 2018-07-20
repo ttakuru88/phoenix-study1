@@ -1,9 +1,7 @@
 defmodule PhxAppWeb.SessionControllerTest do
   use PhxAppWeb.ConnCase
-  # use ExUnit.Case, async: true
+  use PhxApp.TestUser, async: true
   use Plug.Test
-
-  alias PhxApp.{User, Repo}
 
   describe "未ログイン" do
     test "GET /sessions/new", %{conn: conn} do
@@ -13,14 +11,10 @@ defmodule PhxAppWeb.SessionControllerTest do
   end
 
   describe "ログイン済み" do
-    test "GET /sessions/new", %{conn: conn} do
-      {:ok, user} = User.changeset_on_create(%User{}, %{name: "testman", password: "passpass"})
-        |> Repo.insert
-
+    test "GET /sessions/new", %{conn: conn, user: user} do
       conn = conn
         |> init_test_session(%{user_id: user.id})
         |> get("/sessions/new")
-
       assert redirected_to(conn) =~ "/"
     end
   end
